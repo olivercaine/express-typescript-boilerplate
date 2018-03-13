@@ -8,6 +8,7 @@ export class CreateBruce implements SeedsInterface {
         const em = connection.createEntityManager();
 
         const user = new User();
+        user.id = '26'; // TODO remove
         user.firstName = 'Bruce';
         user.lastName = 'Wayne';
         user.email = 'bruce.wayne@wayne-enterprises.com';
