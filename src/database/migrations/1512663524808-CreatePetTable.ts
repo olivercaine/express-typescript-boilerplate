@@ -18,8 +18,9 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
                 isNullable: false,
             }, {
                 name: 'age',
-                type: 'int',
-                length: 11,
+                // type: 'int',
+                // length: 11,
+                type: 'integer',
                 isPrimary: false,
                 isNullable: false,
             }, {

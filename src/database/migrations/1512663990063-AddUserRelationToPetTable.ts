@@ -7,7 +7,7 @@ export class AddUserRelationToPetTable1512663990063 implements MigrationInterfac
         ['user_id'],
         ['id'],
         'user',
-        ''
+        'user'
     );
 
     public async up(queryRunner: QueryRunner): Promise<any> {
