@@ -6,8 +6,9 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
         const table = new Table('pet', [
             {
                 name: 'id',
-                type: 'varchar',
-                length: 255,
+                type: 'int',
+                default: 10,
+                // length: 255,
                 isPrimary: true,
                 isNullable: false,
             }, {
@@ -18,15 +19,14 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
                 isNullable: false,
             }, {
                 name: 'age',
-                // type: 'int',
+                type: 'int',
                 // length: 11,
-                type: 'integer',
                 isPrimary: false,
                 isNullable: false,
             }, {
                 name: 'user_id',
-                type: 'varchar',
-                length: 255,
+                type: 'int',
+                // length: 255,
                 isPrimary: false,
                 isNullable: true,
             },

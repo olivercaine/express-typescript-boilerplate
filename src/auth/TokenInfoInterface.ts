@@ -1,3 +1,3 @@
 export interface TokenInfoInterface {
-    user_id: string;
+    user_id: number;
 }

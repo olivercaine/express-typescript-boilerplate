@@ -12,5 +12,6 @@ factory.define(Pet, (faker: typeof Faker) => {
     const pet = new Pet();
     pet.name = name;
     pet.age = faker.random.number();
+    pet.id = faker.random.number();
     return pet;
 });
