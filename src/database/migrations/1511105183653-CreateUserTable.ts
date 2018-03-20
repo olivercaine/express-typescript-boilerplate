@@ -7,8 +7,6 @@ export class CreateUserTable1511105183653 implements MigrationInterface {
             {
                 name: 'id',
                 type: 'int',
-                default: 20,
-                // length: 255,
                 isPrimary: true,
                 isNullable: false,
             }, {

@@ -7,8 +7,6 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
             {
                 name: 'id',
                 type: 'int',
-                default: 10,
-                // length: 255,
                 isPrimary: true,
                 isNullable: false,
             }, {
@@ -20,13 +18,11 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
             }, {
                 name: 'age',
                 type: 'int',
-                // length: 11,
                 isPrimary: false,
                 isNullable: false,
             }, {
                 name: 'user_id',
                 type: 'int',
-                // length: 255,
                 isPrimary: false,
                 isNullable: true,
             },
