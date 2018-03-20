@@ -8,7 +8,7 @@ export class CreatePets implements SeedsInterface {
         const connection = await factory.getConnection();
         const em = connection.createEntityManager();
 
-        await times(2, async (n) => {
+        await times(10, async (n) => {
             const pet = await factory.get(Pet).create();
             pet.id = Math.floor(Math.random() * 2000);
             const user = await factory.get(User).make();

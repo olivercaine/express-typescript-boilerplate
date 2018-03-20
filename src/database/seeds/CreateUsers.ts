@@ -6,7 +6,7 @@ export class CreateUsers implements SeedsInterface {
     public async seed(factory: FactoryInterface): Promise<any> {
         await factory
             .get(User)
-            .createMany(2);
+            .createMany(10);
     }
 
 }
