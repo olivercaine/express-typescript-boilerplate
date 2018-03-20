@@ -22,7 +22,7 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
                 isNullable: false,
             }, {
                 name: 'user_id',
-                type: 'int',
+                type: 'uuid',
                 isPrimary: false,
                 isNullable: true,
             },

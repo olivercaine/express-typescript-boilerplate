@@ -7,7 +7,7 @@ import { Pet } from './Pet';
 export class User {
 
     @PrimaryGeneratedColumn()
-    public id: number;
+    public id: string;
 
     @IsNotEmpty()
     @Column({ name: 'first_name' })
