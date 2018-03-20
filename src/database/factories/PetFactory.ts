@@ -10,8 +10,8 @@ factory.define(Pet, (faker: typeof Faker) => {
     const name = faker.name.firstName(gender);
 
     const pet = new Pet();
+    // pet.id = faker.random.number(); // TODO remove
     pet.name = name;
     pet.age = faker.random.number();
-    pet.id = faker.random.number();
     return pet;
 });
