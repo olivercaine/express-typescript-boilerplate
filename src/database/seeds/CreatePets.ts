@@ -10,9 +10,7 @@ export class CreatePets implements SeedsInterface {
 
         await times(10, async (n) => {
             const pet = await factory.get(Pet).create();
-            // pet.id = Math.floor(Math.random() * 2000); // TODO remove
             const user = await factory.get(User).make();
-            // user.id = Math.floor(Math.random() * 2000); // TODO remove
             user.pets = [pet];
             await em.save(user);
         });

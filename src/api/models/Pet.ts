@@ -6,7 +6,7 @@ import { User } from './User';
 @Entity()
 export class Pet {
 
-    @PrimaryGeneratedColumn('increment')
+    @PrimaryGeneratedColumn()
     public id: number;
 
     @IsNotEmpty()
