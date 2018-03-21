@@ -1,5 +1,3 @@
-import * as uuid from 'uuid';
-
 import { User } from '../../../src/api/models/User';
 import { FactoryInterface, SeedsInterface } from '../../lib/seeds';
 
@@ -10,7 +8,6 @@ export class CreateBruce implements SeedsInterface {
         const em = connection.createEntityManager();
 
         const user = new User();
-        user.id = uuid.v4(); // TODO: remove/automate this
         user.firstName = 'Bruce';
         user.lastName = 'Wayne';
         user.email = 'bruce.wayne@wayne-enterprises.com';
