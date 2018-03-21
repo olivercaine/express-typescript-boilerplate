@@ -7,10 +7,10 @@ export class CreateUserTable1511105183653 implements MigrationInterface {
             {
                 name: 'id',
                 type: 'uuid',
-                isPrimary: true,
-                isNullable: false,
                 generationStrategy: 'uuid',
                 isGenerated: true,
+                isPrimary: true,
+                isNullable: false,
             }, {
                 name: 'first_name',
                 type: 'varchar',

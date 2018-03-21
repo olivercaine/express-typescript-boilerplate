@@ -7,10 +7,10 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
             {
                 name: 'id',
                 type: 'uuid',
-                isPrimary: true,
-                isNullable: false,
                 generationStrategy: 'uuid',
                 isGenerated: true,
+                isPrimary: true,
+                isNullable: false,
             }, {
                 name: 'name',
                 type: 'varchar',
