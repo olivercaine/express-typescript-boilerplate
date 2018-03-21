@@ -6,7 +6,7 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
         const table = new Table('pet', [
             {
                 name: 'id',
-                type: 'serial',
+                type: 'uuid',
                 isPrimary: true,
                 isNullable: false,
             }, {
