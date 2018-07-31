@@ -6,8 +6,9 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
         const table = new Table('pet', [
             {
                 name: 'id',
-                type: 'varchar',
-                length: 255,
+                type: 'uuid',
+                generationStrategy: 'uuid',
+                isGenerated: true,
                 isPrimary: true,
                 isNullable: false,
             }, {
@@ -19,13 +20,11 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
             }, {
                 name: 'age',
                 type: 'int',
-                length: 11,
                 isPrimary: false,
                 isNullable: false,
             }, {
                 name: 'user_id',
-                type: 'varchar',
-                length: 255,
+                type: 'uuid',
                 isPrimary: false,
                 isNullable: true,
             },

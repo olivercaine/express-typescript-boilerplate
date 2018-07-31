@@ -6,7 +6,7 @@ import { User } from './User';
 @Entity()
 export class Pet {
 
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     public id: string;
 
     @IsNotEmpty()
@@ -21,7 +21,7 @@ export class Pet {
         name: 'user_id',
         nullable: true,
     })
-    public userId: number;
+    public userId: string;
 
     @ManyToOne(type => User, user => user.pets)
     @JoinColumn({ name: 'user_id' })

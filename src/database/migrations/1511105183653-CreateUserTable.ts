@@ -6,8 +6,9 @@ export class CreateUserTable1511105183653 implements MigrationInterface {
         const table = new Table('user', [
             {
                 name: 'id',
-                type: 'varchar',
-                length: 255,
+                type: 'uuid',
+                generationStrategy: 'uuid',
+                isGenerated: true,
                 isPrimary: true,
                 isNullable: false,
             }, {

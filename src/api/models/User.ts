@@ -6,7 +6,7 @@ import { Pet } from './Pet';
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     public id: string;
 
     @IsNotEmpty()
