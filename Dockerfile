@@ -17,6 +17,8 @@ COPY . /usr/src/app
 RUN npm run lint
 RUN npm start test
 
+RUN npm config set unsafe-perm false
+
 # Stage 2: Create the production image
 FROM node:8.15-alpine
 
@@ -24,7 +26,7 @@ FROM node:8.15-alpine
 WORKDIR /usr/src/app
 
 # Copy app source to work directory
-COPY --from=build-server /usr/src/app /usr/src/app
+COPY --from=build-server /usr/src/app .
 
 # Build and run the app
 CMD npm start serve
