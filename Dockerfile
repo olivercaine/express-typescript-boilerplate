@@ -2,7 +2,7 @@
 FROM node:8.15-alpine as build-server
 
 # Create work directory
-WORKDIR /usr/src/app
+WORKDIR /project
 
 # ?
 RUN npm config set unsafe-perm true
@@ -26,7 +26,7 @@ FROM node:8.15-alpine
 WORKDIR /usr/src/app
 
 # Copy app source to work directory
-COPY --from=build-server /usr/src/app .
+COPY --from=build-server /project /usr/src/app
 
 # Build and run the app
 CMD npm start serve
