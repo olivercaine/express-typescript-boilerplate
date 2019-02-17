@@ -23,10 +23,10 @@ RUN npm config set unsafe-perm false
 FROM node:8.15-alpine
 
 # Create work directory
-WORKDIR /usr/src/app
+WORKDIR /project
 
 # Copy app source to work directory
-COPY --from=build-server /project /usr/src/app
+COPY --from=build-server /project .
 
 # Build and run the app
 CMD npm start serve
