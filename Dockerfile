@@ -5,7 +5,7 @@ FROM node:8.15-alpine as build-server
 WORKDIR /project
 
 # ?
-RUN npm config set unsafe-perm true
+# RUN npm config set unsafe-perm true
 
 # Install app dependencies
 COPY package*.json ./
@@ -17,7 +17,7 @@ COPY . /usr/src/app
 RUN npm run lint
 RUN npm start test
 
-RUN npm config set unsafe-perm false
+# RUN npm config set unsafe-perm false
 
 # Stage 2: Create the production image
 FROM node:8.15-alpine
