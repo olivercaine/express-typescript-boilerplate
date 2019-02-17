@@ -1,7 +1,11 @@
-FROM node:8.15-alpine
+# Stage 1: Prepare to dist
+FROM node:8.15-alpine as build-server
 
 # Create work directory
 WORKDIR /usr/src/app
+
+# ?
+RUN npm config set unsafe-perm true
 
 # Install app dependencies
 COPY package*.json ./
@@ -12,6 +16,15 @@ RUN npm i nps -g
 COPY . /usr/src/app
 RUN npm run lint
 RUN npm start test
+
+# Stage 2: Create the production image
+FROM node:8.15-alpine
+
+# Create work directory
+WORKDIR /usr/src/app
+
+# Copy app source to work directory
+COPY --from=build-server /usr/src/app /usr/src/app
 
 # Build and run the app
 CMD npm start serve
