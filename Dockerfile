@@ -9,8 +9,8 @@ COPY package*.json ./
 RUN npm config set unsafe-perm true
 RUN npm i nps -g
 # Run --production first so it's cache for next STAGE 2
-RUN npm install --production
-RUN npm install
+RUN npm install --prefer-offline --production
+RUN npm install --prefer-offline
 RUN npm config set unsafe-perm false
 
 # Lint and test the app
@@ -28,7 +28,7 @@ WORKDIR /project
 COPY package*.json ./
 RUN npm config set unsafe-perm true
 RUN npm i nps -g
-RUN npm install --production
+RUN npm install --prefer-offline --production
 RUN npm config set unsafe-perm false
 
 # Lint and test the app
