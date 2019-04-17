@@ -1,24 +1,28 @@
-# --------------- STAGE 1 ---------------
-FROM node:8.15-alpine
+# TODO: this file needs work. 
+# - Find out why `unsafe-perm` is used
+# - Copy dist from stage 1 to stage 2
+# - Try directly using Node instead of NPM when starting app in production
 
-# Create work directory
-WORKDIR /project
+# --------------- STAGE 1: Dependencies ---------------
+FROM base:latest as stage-dependencies
 
-# Install dependencies
 COPY package*.json ./
 RUN npm config set unsafe-perm true
 RUN npm i nps -g
-# Run --production first so it's cache for next STAGE 2
-RUN npm install --prefer-offline --production
+# Run --production first so it's cache for next STAGE 2 (TODO: sort this)
+# RUN npm install --prefer-offline --production
 RUN npm install --prefer-offline
 RUN npm config set unsafe-perm false
 
-# Lint and test the app
+# --------------- STAGE 2: Build ---------------
+FROM stage-dependencies as stage-build
+
 COPY . /usr/src/app
 RUN npm run lint
 RUN npm start test
+RUN npm start build
 
-# --------------- STAGE 2 ---------------
+# --------------- STAGE 3: Host ---------------
 FROM node:8.15-alpine
 
 # Create work directory
@@ -31,8 +35,6 @@ RUN npm i nps -g
 RUN npm install --prefer-offline --production
 RUN npm config set unsafe-perm false
 
-# Lint and test the app
 COPY . /usr/src/app
 
-# Run the app
 CMD npm start serve
