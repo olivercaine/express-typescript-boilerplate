@@ -7,7 +7,8 @@
     "start": "nps",
     "test": "npm start test",
     "build": "npm start build",
-    "presetup": "yarn install",
+    "presetup": "npm install",
+    "lint": "nps lint",
     "setup": "npm start config && npm start setup.script"
   },
   "engines": {
