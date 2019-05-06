@@ -31,6 +31,9 @@ FROM node:8.15-alpine
 # Create work directory
 WORKDIR /project
 
+# Installing Python
+RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
+
 # Install dependencies
 COPY package*.json ./
 RUN npm config set unsafe-perm true
