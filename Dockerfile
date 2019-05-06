@@ -6,16 +6,21 @@
 # --------------- STAGE 1: Dependencies ---------------
 FROM base:latest as stage-dependencies
 
-# Installing Python
+# Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
 
-COPY package*.json ./
-RUN npm config set unsafe-perm true
-RUN npm i nps -g
-# Run --production first so it's cache for next STAGE 2 (TODO: sort this)
-# RUN npm install --prefer-offline --production
-RUN npm install --prefer-offline
-RUN npm config set unsafe-perm false
+# Create work directory
+WORKDIR /project
+
+# Install runtime dependencies
+RUN npm install yarn -g
+
+# Install app dependencies
+COPY package*.json yarn.lock ./
+RUN yarn install
+
+# Copy app source to work directory
+COPY . /project
 
 # --------------- STAGE 2: Build ---------------
 FROM stage-dependencies as stage-build
