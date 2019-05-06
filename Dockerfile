@@ -6,6 +6,9 @@
 # --------------- STAGE 1: Dependencies ---------------
 FROM base:latest as stage-dependencies
 
+# Installing Python
+RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
+
 COPY package*.json ./
 RUN npm config set unsafe-perm true
 RUN npm i nps -g
