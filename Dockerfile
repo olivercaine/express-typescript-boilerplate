@@ -10,7 +10,7 @@ FROM base:latest as stage-dependencies
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
 
 # Create work directory
-WORKDIR /project
+WORKDIR /usr/src/app
 
 # Install runtime dependencies
 RUN npm install yarn -g
@@ -20,32 +20,37 @@ COPY package*.json yarn.lock ./
 RUN yarn install
 
 # Copy app source to work directory
-COPY . /project
+COPY . /usr/src/app
 
 # --------------- STAGE 2: Build ---------------
 FROM stage-dependencies as stage-build
 
+# Needed to run tests?
+# RUN npm i nps -g
+
 COPY . /usr/src/app
 RUN npm run lint
-RUN npm start test
+# RUN npm start test # TODO
 RUN npm start build
 
 # --------------- STAGE 3: Host ---------------
-FROM node:8.15-alpine
+FROM node:8-alpine
 
-# Create work directory
-WORKDIR /project
-
-# Installing Python
+# Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
 
-# Install dependencies
-COPY package*.json ./
-RUN npm config set unsafe-perm true
-RUN npm i nps -g
-RUN npm install --prefer-offline --production
-RUN npm config set unsafe-perm false
+# Create work directory
+WORKDIR /usr/src/app
 
+# Install runtime dependencies
+RUN npm install yarn -g
+
+# Install app dependencies
+COPY package*.json yarn.lock ./
+RUN yarn install
+
+# Copy app source to work directory
 COPY . /usr/src/app
 
+# Build and run the app
 CMD npm start serve
