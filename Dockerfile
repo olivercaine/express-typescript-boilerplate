@@ -1,5 +1,4 @@
 # TODO: this file needs work.
-# - Find out why `unsafe-perm` is used
 # - Copy dist from stage 1 to stage 2
 # - Try directly using Node instead of NPM when starting app in production
 
