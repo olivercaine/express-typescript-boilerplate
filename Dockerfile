@@ -12,7 +12,9 @@ RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
 WORKDIR /usr/src/app
 
 # Install runtime dependencies
+RUN npm config set unsafe-perm true	
 RUN npm install yarn -g
+RUN npm config set unsafe-perm false
 
 # Install app dependencies
 COPY package*.json yarn.lock ./
@@ -33,7 +35,7 @@ RUN npm run lint
 RUN npm start build
 
 # --------------- STAGE 3: Host ---------------
-FROM node:8-alpine
+FROM node:8.15-alpine
 
 # Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
@@ -46,7 +48,8 @@ RUN npm install yarn -g
 
 # Install app dependencies
 COPY package*.json yarn.lock ./
-RUN yarn install
+# --production?
+RUN yarn install 
 
 # Copy app source to work directory
 COPY . /usr/src/app
