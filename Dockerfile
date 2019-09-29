@@ -3,7 +3,7 @@
 # - Try directly using Node instead of NPM when starting app in production
 
 # --------------- STAGE 1: Dependencies ---------------
-FROM base:latest as stage-dependencies
+FROM boilerplate-stack/base:latest as stage-dependencies
 
 # Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
