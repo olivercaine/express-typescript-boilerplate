@@ -3,7 +3,7 @@
 # - Try directly using Node instead of NPM when starting app in production
 
 # --------------- STAGE 1: Dependencies ---------------
-FROM olliecaine/base:1.0.7 as stage-dependencies
+FROM olliecaine/base:1.0.9 as stage-dependencies
 
 # Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
