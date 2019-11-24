@@ -31,7 +31,7 @@ FROM stage-dependencies as stage-build
 
 COPY . /usr/src/app
 RUN npm run lint
-RUN npm start test
+# RUN npm start test
 RUN npm start build
 
 # --------------- STAGE 3: Host ---------------
