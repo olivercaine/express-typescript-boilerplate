@@ -3,7 +3,7 @@
 # - Try directly using Node instead of NPM when starting app in production
 
 # --------------- STAGE 1: Dependencies ---------------
-FROM olliecaine/base:1.0.9 as stage-dependencies
+FROM olliecaine/dev:master as stage-dependencies
 
 # Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
@@ -35,7 +35,7 @@ RUN npm run lint
 RUN npm start build
 
 # --------------- STAGE 3: Host ---------------
-FROM node:8.15-alpine
+FROM olliecaine/base:master
 
 # Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
