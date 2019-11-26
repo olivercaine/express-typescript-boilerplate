@@ -1,6 +1,5 @@
 # TODO: this file needs work.
-# - Copy dist from stage 1 to stage 2
-# - Try directly using Node instead of NPM when starting app in production
+# -
 
 # --------------- STAGE 1: Dependencies ---------------
 FROM olliecaine/dev:master as stage-dependencies
@@ -8,11 +7,8 @@ FROM olliecaine/dev:master as stage-dependencies
 # Install Python
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
 
-# Create work directory
-WORKDIR /usr/src/app
-
 # Install runtime dependencies
-RUN npm config set unsafe-perm true	
+RUN npm config set unsafe-perm true
 RUN npm install yarn -g
 RUN npm config set unsafe-perm false
 
@@ -20,41 +16,37 @@ RUN npm config set unsafe-perm false
 COPY package*.json yarn.lock ./
 RUN yarn install
 
-# Copy app source to work directory
-COPY . /usr/src/app
-
 # --------------- STAGE 2: Build ---------------
 FROM stage-dependencies as stage-build
 
-# Needed to run tests?
-# RUN npm i nps -g
-
-COPY . /usr/src/app
+COPY . ./
 RUN npm run lint
-# RUN npm start test
-RUN npm start build
+# TODO: RUN npm start test
+RUN yarn start build
+COPY package.json ./dist
+COPY .env.dev ./dist/.env
 
 # --------------- STAGE 3: Host ---------------
 FROM olliecaine/base:master
 
-# Install Python
-RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
-
-# Create work directory
 WORKDIR /usr/src/app
+COPY --from=stage-build /project/dist .
 
-# Install runtime dependencies
-RUN npm config set unsafe-perm true	
-RUN npm install yarn -g
-RUN npm config set unsafe-perm false
+# Needed by `yarn start`
+RUN npm i nps -g
 
-# Install app dependencies
-COPY package*.json yarn.lock ./
-# --production?
-RUN yarn install 
+# --------------------
+# Install Python
+# RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
 
-# Copy app source to work directory
-COPY . /usr/src/app
+# # Install app dependencies
+# COPY package*.json yarn.lock ./
+# # --production?
+# RUN yarn install
 
-# Build and run the app
-CMD npm start serve
+# # Build and run the app
+# CMD npm start serve
+# --------------------
+
+# Try directly using Node instead of NPM when starting app in production
+CMD ["yarn", "start"]
