@@ -20,27 +20,27 @@ COPY . ./
 RUN npm run lint
 # TODO: RUN npm start test
 RUN yarn start build
-COPY package.json ./dist
+# COPY package.json ./dist
 COPY .env.dev ./dist/.env
 
 # --------------- STAGE 3: Host ---------------
 FROM olliecaine/base:master
 
-WORKDIR /usr/src/app
-COPY --from=stage-build /project/dist .
+# Needed by `yarn start`
+RUN npm i nps -g
 
 # Install runtime dependencies
 RUN npm config set unsafe-perm true
 RUN npm install yarn -g
 RUN npm config set unsafe-perm false
 
+WORKDIR /usr/src/app
+COPY --from=stage-build /project/dist .
+
 # Install app dependencies
 COPY package*.json yarn.lock ./
 # --production?
 RUN yarn install
-
-# Needed by `yarn start`
-RUN npm i nps -g
 
 # Try directly using Node instead of NPM when starting app in production
 CMD ["yarn", "start"]
