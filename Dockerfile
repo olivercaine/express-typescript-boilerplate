@@ -29,6 +29,11 @@ FROM olliecaine/base:master
 WORKDIR /usr/src/app
 COPY --from=stage-build /project/dist .
 
+# Install runtime dependencies
+RUN npm config set unsafe-perm true
+RUN npm install yarn -g
+RUN npm config set unsafe-perm false
+
 # Install app dependencies
 COPY package*.json yarn.lock ./
 # --production?
