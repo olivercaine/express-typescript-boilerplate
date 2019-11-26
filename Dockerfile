@@ -1,6 +1,3 @@
-# TODO: this file needs work.
-# -
-
 # --------------- STAGE 1: Dependencies ---------------
 FROM olliecaine/dev:master as stage-dependencies
 
@@ -34,19 +31,6 @@ COPY --from=stage-build /project/dist .
 
 # Needed by `yarn start`
 RUN npm i nps -g
-
-# --------------------
-# Install Python
-# RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
-
-# # Install app dependencies
-# COPY package*.json yarn.lock ./
-# # --production?
-# RUN yarn install
-
-# # Build and run the app
-# CMD npm start serve
-# --------------------
 
 # Try directly using Node instead of NPM when starting app in production
 CMD ["yarn", "start"]
