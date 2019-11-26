@@ -29,6 +29,11 @@ FROM olliecaine/base:master
 WORKDIR /usr/src/app
 COPY --from=stage-build /project/dist .
 
+# Install app dependencies
+COPY package*.json yarn.lock ./
+# --production?
+RUN yarn install
+
 # Needed by `yarn start`
 RUN npm i nps -g
 
