@@ -1,21 +1,32 @@
-FROM olliecaine/base:master
+# --------------- STAGE 1: Develop ---------------
+FROM olliecaine/dev:master as stage-develop
 
-# Create work directory
-WORKDIR /usr/src/app
-
-# Install Python
+# Install dev dependencies
 RUN apk update && apk add python g++ make && rm -rf /var/cache/apk/*
-
-# Install runtime dependencies
 RUN npm config set unsafe-perm true
 RUN npm install yarn -g
 RUN npm config set unsafe-perm false
 
-# Copy app source to work directory
-COPY . /usr/src/app
+CMD ["npm", "run", "dev"]
 
-# Install app dependencies
+# --------------- STAGE 2: Build ---------------
+FROM stage-develop as stage-build
+
+# Install dependencies separately so image step cache isn't invalidated by source code change
+COPY package*.json yarn.lock ./
 RUN yarn install
 
-# Build and run the app
-CMD npm start serve
+COPY . ./
+RUN npm run lint
+# TODO: RUN npm run test
+RUN npm run build
+
+# --------------- STAGE 3: Host ---------------
+FROM olliecaine/base:master
+
+WORKDIR /usr/src/app
+
+COPY --from=stage-build /project .
+
+USER node
+CMD ["npm", "run", "start"]
