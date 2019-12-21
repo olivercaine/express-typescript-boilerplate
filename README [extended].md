@@ -19,6 +19,14 @@ Strings can be manually Base64 encoded at [base64encode.org](https://www.base64e
 
 ## Troubleshooting
 
+### Data and salt arguments required
+
+Error: `data and salt arguments required` in API response
+
+Cause: `@Exclude()` parameter is stripping password when User is posted to API
+
+Solution: Generate a password for the user and then send them down the set password flow (similar to the forgotten password one), i.e. send a temporary token to their email address.
+
 ### Missing bcrypt module
 
 Error: `Error: Cannot find module 'bcrypt'`
