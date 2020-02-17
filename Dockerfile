@@ -18,7 +18,9 @@ RUN yarn install
 
 COPY . ./
 RUN npm run lint
-# TODO: RUN npm run test
+RUN yarn start test
+RUN yarn start test.integration
+RUN yarn start test.e2e
 RUN npm run build
 
 # --------------- STAGE 3: Host ---------------
