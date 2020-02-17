@@ -17,6 +17,7 @@ FROM stage-develop as stage-build
 # Install dependencies first so cache layer isn't nvalidated by source code change
 COPY package*.json yarn.lock ./
 RUN yarn install
+
 COPY . ./
 RUN npm run lint \
     && yarn start test \
