@@ -31,12 +31,12 @@ There are two things preventing new users from being created via the API out of 
 
       ```typescript
       public async seed(factory: Factory, connection: Connection): Promise<Animal> {
-        const em = connection.createEntityManager();
+         const em = connection.createEntityManager();
 
-      	const animal = new Animal();
-      	animal.id = uuid.v1();
-      	animal.name = 'Rex';
-      	return await em.save(animal);
+         const animal = new Animal();
+         animal.id = uuid.v1();
+         animal.name = 'Rex';
+         return await em.save(animal);
       }
       ```
 
