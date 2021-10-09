@@ -5,10 +5,10 @@
   "main": "src/app.ts",
   "scripts": {
     "start": "nps",
-    "dev": "yarn install && npm run setup && npm start serve",
+    "dev": "npm install && npm run setup && npm start serve",
     "test": "npm start test",
     "build": "npm start build",
-    "presetup": "yarn install",
+    "presetup": "npm install",
     "lint": "nps lint",
     "setup": "npm start config && npm start setup.script",
     "health-check": "npm i && concurrently 'npm run lint' 'npm test'"
