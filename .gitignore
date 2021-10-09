@@ -9,7 +9,7 @@
 node_modules/
 npm-debug.log
 .env
-package-lock.json
+yarn.lock
 
 # OS generated files #
 .DS_Store
