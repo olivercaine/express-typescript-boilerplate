@@ -16,7 +16,6 @@ FROM stage-develop as stage-build
 
 # Install dependencies first so that cache layer isn't invalidated by source code change
 COPY package*.json yarn.lock ./
-COPY common ./common
 RUN yarn install --frozen-lockfile
 
 COPY . ./
