@@ -12,7 +12,7 @@ CMD ["npm", "run", "dev"]
 FROM stage-develop as stage-build
 
 # Install dependencies first so that cache layer isn't invalidated by source code change
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
 
 COPY . ./
