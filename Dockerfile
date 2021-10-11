@@ -1,5 +1,5 @@
 # --------------- STAGE 1: Develop ---------------
-FROM olliecaine/dev:master as stage-develop
+FROM olliecaine/dev:node10alpine as stage-develop
 
 # Install dev dependencies
 RUN apk update \
@@ -23,7 +23,7 @@ RUN npm run lint \
     && npm run build
 
 # --------------- STAGE 3: Host ---------------
-FROM olliecaine/base:master
+FROM olliecaine/base:node10alpine
 
 WORKDIR /usr/src/app
 
