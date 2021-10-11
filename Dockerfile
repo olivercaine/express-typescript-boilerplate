@@ -4,10 +4,7 @@ FROM olliecaine/dev:node10alpine as stage-develop
 # Install dev dependencies
 RUN apk update \
     && apk add python g++ make \
-    && rm -rf /var/cache/apk/* \
-    && npm config set unsafe-perm true \
-    && npm install yarn -g \
-    && npm config set unsafe-perm false
+    && rm -rf /var/cache/apk/*
 
 CMD ["npm", "run", "dev"]
 
@@ -15,14 +12,14 @@ CMD ["npm", "run", "dev"]
 FROM stage-develop as stage-build
 
 # Install dependencies first so that cache layer isn't invalidated by source code change
-COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json package-lock.json ./
+RUN npm ci
 
 COPY . ./
 RUN npm run lint \
-    && yarn start test \
-    && yarn start test.integration \
-    && yarn start test.e2e \
+    && npm start test \
+    && npm start test.integration \
+    && npm start test.e2e \
     && npm run build
 
 # --------------- STAGE 3: Host ---------------
