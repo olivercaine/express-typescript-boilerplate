@@ -37,8 +37,5 @@
             "es2015.symbol.wellknown",
             "esnext.asynciterable"
         ]
-    },
-    "exclude": [
-        "node_modules"
-    ]
+    }
 }
