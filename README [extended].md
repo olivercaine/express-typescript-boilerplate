@@ -42,6 +42,41 @@ There are two things preventing new users from being created via the API out of 
 
    3. Verify it's working by opening the table in the db and ensuring the data is in there
 
+## Set primary key to auto-increment
+
+Table definitions in database can’t have length property on type ‘int’.
+Primary keys also need type: 'serial' instead of int.
+
+To change primary key to uuid:
+
+```
+{
+  name: 'id',
+  type: 'uuid',
+  isPrimary: true,
+  isNullable: false,
+  generationStrategy: 'uuid',
+  isGenerated: true,
+}
+```
+
+Requires uuid-ossp to be installed (already installed on 9.1 and up)
+
+```sql
+SELECT * FROM pg_available_extensions
+```
+
+Following (manual code) automatically adds uuid:
+
+```sql
+CREATE TABLE "ollie" (
+"myguid" uuid DEFAULT uuid_generate_v4() NOT NULL,
+"something" int4 DEFAULT 0 NOT NULL)
+with (OIDS = FALSE)
+
+INSERT INTO ollie ("something") VALUES (27);
+```
+
 ## Authentication
 
 APIs which have the `@Authorized` on them require requests to contain an `Authorization` header for them to be accepted.
