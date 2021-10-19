@@ -74,6 +74,13 @@ module.exports = {
             hiddenFromHelp: true
         },
         /**
+         * Fixes TSLint over your project
+         */
+        'lint:fix': {
+            script: tslintFix(`./src/**/*.ts`),
+            hiddenFromHelp: true
+        },
+        /**
          * Transpile your app into javascript
          */
         transpile: {
@@ -304,4 +311,8 @@ function runFast(path) {
 
 function tslint(path) {
     return `tslint -c ./tslint.json ${path} --format stylish`;
+}
+
+function tslintFix(path) {
+    return `${tslint(path)} --fix`;
 }

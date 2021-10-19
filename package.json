@@ -10,6 +10,7 @@
     "build": "npm start build",
     "presetup": "npm install",
     "lint": "nps lint",
+    "lint:fix": "nps lint:fix",
     "setup": "npm start config && npm start setup.script",
     "health-check": "npm i && concurrently 'npm run lint' 'npm test'"
   },
