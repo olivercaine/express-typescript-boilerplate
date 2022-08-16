@@ -10,6 +10,7 @@ on:
   schedule:
     # Every Friday at 6pm
     - cron: "0 18 * * FRI"
+  workflow_dispatch: # Enables running workflow manually
 
 jobs:
   build:
