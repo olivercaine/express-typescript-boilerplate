@@ -11,11 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . ./
-RUN npm run lint \
-    && npm start test \
-    && npm start test.integration \
-    && npm start test.e2e \
-    && npm run build
+RUN npm run health-check    
 
 # --------------- STAGE 3: Host ---------------
 FROM olliecaine/base:node10alpine
