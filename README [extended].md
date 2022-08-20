@@ -1,5 +1,7 @@
 # README [extended]
 
+[![Node.js CI](https://github.com/olivercaine/express-typescript-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/olivercaine/express-typescript-boilerplate/actions/workflows/node.js.yml)
+
 ## Running the app
 
 1. Copy `.env.dev` to `.env`
