@@ -1,5 +1,5 @@
 # --------------- STAGE 1: Develop ---------------
-FROM olliecaine/dev:node10alpinesecure as stage-develop
+FROM olliecaine/dev:node14alpineserver as stage-develop
 
 CMD ["npm", "run", "dev"]
 
@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . ./
-RUN npm run health-check    
+RUN npm run health-check
 
 # --------------- STAGE 3: Host ---------------
 FROM olliecaine/base:node10alpine
