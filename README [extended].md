@@ -2,6 +2,12 @@
 
 [![Node.js CI](https://github.com/olivercaine/express-typescript-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/olivercaine/express-typescript-boilerplate/actions/workflows/node.js.yml)
 
+## Copying the app into your own repo
+
+```
+git clone git@github.com:olivercaine/express-typescript-boilerplate.git server && rm -fr ./server/.git
+```
+
 ## Running the app
 
 1. Copy `.env.dev` to `.env`
