@@ -6,7 +6,6 @@
         "sourceMap": true,
         "outDir": "dist",
         "importHelpers": true,
-        "skipLibCheck": true,
         "strict": true,
         "noImplicitAny": false,
         "strictNullChecks": false,
