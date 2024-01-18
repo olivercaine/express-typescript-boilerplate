@@ -12,7 +12,7 @@
     "lint": "nps lint",
     "lint:fix": "nps lint:fix",
     "setup": "npm start config && npm start setup.script",
-    "health-check": "npm i && concurrently 'npm run lint' 'npm test' 'npm start test.integration' 'npm start test.e2e' 'npm run build'"
+    "health-check": "npm i && concurrently --group --kill-others-on-fail 'npm run lint --quiet' 'npm run build' 'npm test' 'npm start test.integration' 'npm start test.e2e'"
   },
   "engines": {
     "node": ">=8.0.0"
