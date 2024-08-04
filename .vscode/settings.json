@@ -5,7 +5,8 @@
         "tsconfig.build.json": true,
     },
     "workbench.colorCustomizations": {
-        "titleBar.activeForeground": "#dfd919"
+        "titleBar.activeForeground": "#000",
+        "titleBar.activeBackground": "#dd279a",
     },
     "importSorter.generalConfiguration.sortOnBeforeSave": true,
     "files.trimTrailingWhitespace": true,
