@@ -1,5 +1,10 @@
 # --------------- STAGE 1: Develop ---------------
-FROM olliecaine/dev:node10alpinesecure as stage-develop
+FROM olliecaine/dev:node14alpine as stage-develop
+
+# Install dev dependencies
+RUN apk update \
+    && apk add python g++ make \
+    && rm -rf /var/cache/apk/*
 
 CMD ["npm", "run", "dev"]
 
